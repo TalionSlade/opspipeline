@@ -8,7 +8,7 @@ pipeline{
                 }
             }
             steps{
-                echo "========executing A========"
+                echo "SUCCESS"
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
                         sh 'chmod +x gradlew'
