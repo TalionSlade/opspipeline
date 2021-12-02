@@ -12,7 +12,7 @@ pipeline{
             }
             steps{
                 echo "SUCCESS"
-                script{
+                //script{
                     // withSonarQubeEnv(credentialsId: 'sonar-token2') {
                     //    sh 'chmod +x gradlew'
                     //    sh './gradlew sonarqube --status'
@@ -24,7 +24,7 @@ pipeline{
                     //   }
                     // }
 
-                }            
+                //}            
             }
         }
         stage("docker build & docker push"){
