@@ -58,7 +58,7 @@ pipeline{
                         sh '''
                             helmversion = $(helm show chart kubernetes/myapp/ | grep version | cut -d: -f 2 | tr -d '')
                             tar -czvf myapp-0.2.0.tgz kubernetes/myapp/
-                            curl -u admin:$docker_password http://45.79.124.199:8081/repository/helm-repo/ --upload-file myapp-0.2.0.tgz -v
+                            curl -u admin:$nexus_password http://45.79.124.199:8081/repository/helm-repo/ --upload-file myapp-0.2.0.tgz -v
                         '''
                     }               
                 }
