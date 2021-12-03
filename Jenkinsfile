@@ -32,11 +32,20 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'nexus_pass', variable: 'nexus_password')]) {
                         sh '''
-                            docker build -t 45.79.124.199:8083/springapp:${VERSION} .
+                            docker build --t 45.79.124.199:8083/springapp:${VERSION} .
                             docker login -u admin -p $nexus_password 45.79.124.199:8083
                             docker push 45.79.124.199:8083/springapp:${VERSION}
                         '''
                     }               
+                }
+            }
+        }
+        stage("identifying misconfigs using datree in helm charts"){
+            steps{
+                script{
+                    dir('kubernetes/'){
+                        sh 'helm datree test myapp/'
+                    }            
                 }
             }
         }
